@@ -1,1 +1,1 @@
-# BeerGenie
+* We are creating a web based application that will track and suggest beers for the user based on their input/query.
