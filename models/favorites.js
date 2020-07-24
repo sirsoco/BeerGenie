@@ -1,23 +1,18 @@
 
-var Sequelize = require("sequelize");
 
-var sequelize = require("../config/connection.js");
+module.exports = function(sequelize, DataTypes) {
+  var Favorite = sequelize.define("Favorite", {
+    beer_id: DataTypes.STRING,
+    user_id: DataTypes.STRING 
+  });
+  Favorite.associate = function (models) {
 
-// Creates a "Character" model that matches up with DB
-var favorites = sequelize.define("beers", {
+    Favorite.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    })
+  }
+  return Favorite;
+}
 
-  beer_id: Sequelize.STRING,
-
-  user_id: Sequelize.INTEGER
-
- 
-}, {
-
-  freezeTableName: true
-});
-
-
-Character.sync();
-
-
-module.exports = Favorites;
