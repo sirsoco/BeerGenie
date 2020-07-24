@@ -55,6 +55,6 @@ module.exports = function (app) {
     // we are using a get method to retrieve data
     .get(queryURL)
     .then(function (res) {
-      return res.json;
+      return console.log(res.json);
     });
 };
