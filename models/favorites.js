@@ -4,7 +4,7 @@ var Sequelize = require("sequelize");
 var sequelize = require("../config/connection.js");
 
 // Creates a "Character" model that matches up with DB
-var Favorites = sequelize.define("beers", {
+var favorites = sequelize.define("beers", {
 
   beer_id: Sequelize.STRING,
 
