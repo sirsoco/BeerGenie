@@ -57,4 +57,14 @@ module.exports = function (app) {
     .then(function (res) {
       return console.log(res.json);
     });
+  // name = "budweiser";
+  app.get("/api/favorites", function (req, res) {
+    const queryURL = `https://api.brewerydb.com/v2/beers?key=7873bf684e7db7e59e55ea9dbc1e8d4e&name=${req.name}`;
+    axios
+      // we are using a get method to retrieve data
+      .get(queryURL)
+      .then(function (res) {
+        return res.json;
+      });
+  });
 };
