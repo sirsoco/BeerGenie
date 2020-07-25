@@ -15,7 +15,8 @@ module.exports = function(app) {
         res.status(401).json(err);
       }); 
 });
-/* @Ben @Emilee: Issue was that we were not using Params on Post 
+ //@Ben @Emilee: Issue was that we were not using Params on Post 
+ 
 app.get("/api/favorites/:id", function(req, res) {db.Favorite.findOne({
         where: {
           id: req.params.id
@@ -29,7 +30,7 @@ app.get("/api/favorites/:id", function(req, res) {db.Favorite.findOne({
       }); ;
 });
 
-app.post("/api/favorites", function(req, res) {
+/*app.post("/api/favorites", function(req, res) {
     db.Favorite.create(req.body).then(function(dbFavorite) {
         res.json(dbFavorite)
     });
