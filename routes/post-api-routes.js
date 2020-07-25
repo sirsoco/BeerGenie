@@ -12,6 +12,7 @@ module.exports = function(app) {
         include: [db.User]
     }).then(function(dbFavorite) {
         res.json(dbFavorite)
+        console.log(dbFavorite)
     }).catch(function (err) {
         res.status(401).json(err);
       }); 
@@ -32,10 +33,24 @@ app.get("/api/favorites/:id", function(req, res) {db.Favorite.findOne({
       }); ;
 });
 
-// Adds a favorite  beer to the database 
+// Adds a favorite beer to the database 
 app.post("/api/favorites", function(req, res) {
     db.Favorite.create(req.body).then(function(dbFavorite) {
         res.json(dbFavorite)
+        console.log(dbFavorite)
     });
 });
- } 
+ 
+// Deletes a favorite beer in the database
+ app.delete("/api/favorites/:id", function(req, res) {
+    db.Favorite.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbFavorite) {
+      res.json(dbFavorite);
+      console.log('Beer Deleted')
+    });
+  });
+
+}
