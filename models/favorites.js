@@ -9,7 +9,8 @@ module.exports = function(sequelize, DataTypes) {
 
     Favorite.belongsTo(models.User, {
       foreignKey: {
-        allowNull: false
+
+        allowNull: true
       }
     })
   }

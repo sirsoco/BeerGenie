@@ -1,7 +1,6 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
-const axios = require("axios");
 
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -49,12 +48,10 @@ module.exports = function (app) {
   });
   // here we make an axios call to query the database for a beer
   // first we define the url for the api call
-  name = "budweiser";
-  const queryURL = `https://api.brewerydb.com/v2/beers?key=7873bf684e7db7e59e55ea9dbc1e8d4e&name=${name}`;
-  axios
-    // we are using a get method to retrieve data
-    .get(queryURL)
-    .then(function (res) {
-      return console.log(res.json);
-    });
+
+
+  
+
+
 };
+
