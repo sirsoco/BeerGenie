@@ -1,5 +1,6 @@
 var db = require('../models');
 
+// Retrieves all the beers saved by a user
 module.exports = function(app) {
     app.get('/api/favorites', function(req, res) {
         var query ={};
@@ -17,6 +18,7 @@ module.exports = function(app) {
 });
  //@Ben @Emilee: Issue was that we were not using Params on Post 
  
+ // Retrieves saved beers by id 
 app.get("/api/favorites/:id", function(req, res) {db.Favorite.findOne({
         where: {
           id: req.params.id
@@ -30,10 +32,10 @@ app.get("/api/favorites/:id", function(req, res) {db.Favorite.findOne({
       }); ;
 });
 
-/*app.post("/api/favorites", function(req, res) {
+// Adds a favorite  beer to the database 
+app.post("/api/favorites", function(req, res) {
     db.Favorite.create(req.body).then(function(dbFavorite) {
         res.json(dbFavorite)
     });
 });
-
-*/ } 
+ } 
