@@ -53,4 +53,8 @@ app.post("/api/favorites", function(req, res) {
     });
   });
 
+  app.post("/api/rank/" , function(req, res){
+    db.Rank.create()
+  })
+
 }
