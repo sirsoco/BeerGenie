@@ -99,4 +99,15 @@ app.post("/api/favorites", function(req, res) {
     });
   });
 
+  app.delete('/api/rank/:id', function(req, res) {
+    db.Rank.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbRank) {
+      res.json(dbRank);
+      console.log('Rank Delete')
+    });
+  });
+
 };
