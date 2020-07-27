@@ -40,6 +40,14 @@ app.post("/api/favorites", function(req, res) {
         console.log(dbFavorite)
     });
 });
+
+  app.post("/api/rank", function(req, res) {
+    db.Rank.create(req.body).then(function(dbRank) {
+    res.json(dbRank)
+    console.log(dbRank)
+  });
+});
+
  
 // Deletes a favorite beer in the database
  app.delete("/api/favorites/:id", function(req, res) {
