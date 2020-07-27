@@ -30,12 +30,8 @@ module.exports = function(sequelize, DataTypes) {
   User.associate = function(models) {
     User.hasMany(models.Favorite, {
       onDelete:'cascade'
-    });
-  };
-  User.associate = function(models) {
-    User.hasMany(models.Rank, {
-      onDelete:'cascade'
     })
-  }
+  };
+
   return User;
 };
