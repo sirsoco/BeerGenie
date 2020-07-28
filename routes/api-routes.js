@@ -88,49 +88,17 @@ module.exports = function (app) {
       labels= beerData.labels;
 
         };
+      }*/ 
+    }).catch(function (err) {
+      console.log(err);
+      res.status(401).json(err);
+
+    }); 
     
-    };
-    
-    return postBeer(beer)
+    // return //renderFavorites(beer)
 
   };
-};
-
-function postBeer() {
-    // Adds a favorite beer to the database 
-app.post("/api/favorites", (req, res) => {
-
-  var req = [ {beer_id: beer.beerId,
-              rank: beer.rank
-            }];
-
-  db.Favorite.create(req.body).res.json(dbFavorite)
-  .console.log("added adult beverage: ", dbFavorite)
-  .catch(  (err) => {res.status(401).json(err)});
-
-      });
-                      };
-            
-function postFavorite () {
-    app.get("/api/favorites", function (req, res) {
-    var query = {};
-    if (req.query.favorite_id) {
-      query.FavoriteId = req.query.favorite_id;
-    }
-    db.Favorite.findAll({
-      where: query,
-      include: [db.User],
-    })
-      .then(function (dbFavorite) {
-        res.json(dbFavorite);
-        console.log(dbFavorite);
-      })
-      .catch(function (err) {
-        res.status(401).json(err);
-      }); 
-});
-
-function postOneFavorite() {
+  // route for getting from favorites based off of id
 
   app.get("/api/favorites/:id", function(req, res) {db.Favorite.findOne({
     where: {
@@ -156,7 +124,5 @@ app.delete("/api/favorites/:id", function(req, res) {
     console.log("Beer Deleted");
   });
 });
-q
-}
-};
+
 
