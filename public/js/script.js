@@ -1,3 +1,3 @@
-$(document).ready(function() {        
+gpul$(document).ready(function() {        
     $('.carousel').carousel()
         });
