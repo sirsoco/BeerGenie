@@ -2,7 +2,11 @@
 var db = require("../models");
 var passport = require("../config/passport");
 var axios = require("axios");
+var search =
+// var search = require('../search')
+
 module.exports = function (app) {
+
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
@@ -46,19 +50,141 @@ module.exports = function (app) {
       });
     }
   });
+
+//function to link to search
+
   // here we make an axios call to query the database for a beer
   // first we define the url for the api call
 
-  app.get("/api/favorites/search/:id", function (req, res) {
-    const queryURL = `https://api.brewerydb.com/v2/beers?key=7873bf684e7db7e59e55ea9dbc1e8d4e&name=${req.params.id}`;
-    axios
-      // we are using a get method to retrieve data
-      .get(queryURL)
-      .then(function (response) {
-        console.log(response.data.data[0]);
-        res.json({
-          id: response.data.data[0],
-        });
-      });
+  app.get("/api/favorites/search/:name", searchBeer)
+
+
+
+
+  function searchBeer(req, res) {
+
+     //req = $('#forum-search').val()
+     //rank = $('#rank').val()
+
+     
+    
+    const beerData = `https://api.brewerydb.com/v2/beers?key=7873bf684e7db7e59e55ea9dbc1e8d4e&name=${req.params.name}`;
+    
+    axios.get(beerData)
+      .then(({data}) => {
+        console.log(data)
+    
+        res.json(data);
+        
+    /*var beer = new class beer {
+      constructor(Id, rank, name,
+      description, abv, labels)
+
+      {
+
+      Id = beerData.Id  
+      rank = req.rank;
+      name = beerData.name;
+      description = beerData.description
+      abv = beerData.abv
+      labels= beerData.labels;
+
+        };
+      } */
+    }).catch(function (err) {
+      console.log(err);
+      res.status(401).json(err);
+
+    }); 
+    
+    // return //renderFavorites(beer)
+
+  };
+  // route for getting from favorites based off of id
+  app.get("/api/favorites/:id", function(req, res) {db.Favorite.findOne({
+    where: {
+      id: req.params.id
+    },
+    include: [db.User]
+}).then(function(dbFavorite) {
+    console.log(dbFavorite)
+    return res.json(dbFavorite);
+  })
+  .catch(function (err) {
+    res.status(401).json(err);
+  }); 
+});
+
+// route for deleting a beer from favorites
+app.delete("/api/favorites/:id", function(req, res) {
+  db.Favorite.destroy({
+    where: {
+      id: req.params.id,
+    },
+  }).then(function (dbFavorite) {
+    res.json(dbFavorite);
+    console.log("Beer Deleted");
   });
+});
 };
+
+// function postBeer(beer) {
+//     // Adds a favorite beer to the database 
+//     // Code not being associated 
+    
+    
+//     db.Favorite.create(beer).then(dbFavorite => {
+//       console.log("added adult beverage: ", dbFavorite)
+//       res.json(dbFavorite)
+//     })
+//     .catch(  (err) => {res.status(401).json(err)});
+  
+//                   };
+
+        
+            
+
+//    app.get('/api/favorite')
+//     db.Favorite.findAll({
+//       where: query,
+//       include: [db.User],
+//     })
+//       .then(function (dbFavorite) {
+//         res.json(dbFavorite);
+        
+//         console.log(dbFavorite);
+//       })
+//       .catch(function (err) {
+//         res.status(401).json(err);
+//       }); 
+// });
+
+// // route for getting from favorites based off of id
+//   app.get("/api/favorites/:id", function(req, res) {db.Favorite.findOne({
+//     where: {
+//       id: req.params.id
+//     },
+//     include: [db.User]
+// }).then(function(dbFavorite) {
+//     console.log(dbFavorite)
+//     return res.json(dbFavorite);
+//   })
+//   .catch(function (err) {
+//     res.status(401).json(err);
+//   }); 
+// });
+// // route for deleting a beer from favorites
+// app.delete("/api/favorites/:id", function(req, res) {
+//   db.Favorite.destroy({
+//     where: {
+//       id: req.params.id,
+//     },
+//   }).then(function (dbFavorite) {
+//     res.json(dbFavorite);
+//     console.log("Beer Deleted");
+//   });
+// });
+
+// }
+// };
+
