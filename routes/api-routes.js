@@ -2,7 +2,9 @@
 var db = require("../models");
 var passport = require("../config/passport");
 var axios = require("axios");
+var axios = require('post-api-routes')
 module.exports = function (app) {
+
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
@@ -46,19 +48,115 @@ module.exports = function (app) {
       });
     }
   });
+
+//function to link to search
+
   // here we make an axios call to query the database for a beer
   // first we define the url for the api call
 
-  app.get("/api/favorites/search/:id", function (req, res) {
-    const queryURL = `https://api.brewerydb.com/v2/beers?key=7873bf684e7db7e59e55ea9dbc1e8d4e&name=${req.params.id}`;
-    axios
-      // we are using a get method to retrieve data
-      .get(queryURL)
-      .then(function (response) {
-        console.log(response.data.data[0]);
-        res.json({
-          id: response.data.data[0],
-        });
-      });
-  });
+  app.get("/api/favorites/search/:id", saveBeer.then())
+
+
+
+
+  function searchBeer(req, res) {
+
+     req = $('#forum-search').val()
+     rank = $('#rank').val()
+
+
+     req = { name: req,
+      rank: rank
+    }
+    
+    const beerData = `https://api.brewerydb.com/v2/beers?key=7873bf684e7db7e59e55ea9dbc1e8d4e&name=${req.name}`;
+    
+    beerData = axios.get(beerData);
+    
+
+    var beer = new class beer {
+      constructor(Id, rank, name,
+      description, abv, labels)
+
+      {
+
+      Id = beerData.Id  
+      rank = req.rank;
+      name = beerData.name;
+      description = beerData.description
+      abv = beerData.abv
+      labels= beerData.labels;
+
+        };
+    
+    };
+    
+    return postBeer(beer)
+
+  };
 };
+
+function postBeer() {
+    // Adds a favorite beer to the database 
+app.post("/api/favorites", (req, res) => {
+
+  var req = [ {beer_id: beer.beerId,
+              rank: beer.rank
+            }];
+
+  db.Favorite.create(req.body).res.json(dbFavorite)
+  .console.log("added adult beverage: ", dbFavorite)
+  .catch(  (err) => {res.status(401).json(err)});
+
+      });
+                      };
+            
+function postFavorite () {
+    app.get("/api/favorites", function (req, res) {
+    var query = {};
+    if (req.query.favorite_id) {
+      query.FavoriteId = req.query.favorite_id;
+    }
+    db.Favorite.findAll({
+      where: query,
+      include: [db.User],
+    })
+      .then(function (dbFavorite) {
+        res.json(dbFavorite);
+        console.log(dbFavorite);
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      }); 
+});
+
+function postOneFavorite() {
+
+  app.get("/api/favorites/:id", function(req, res) {db.Favorite.findOne({
+    where: {
+      id: req.params.id
+    },
+    include: [db.User]
+}).then(function(dbFavorite) {
+    console.log(dbFavorite)
+    return res.json(dbFavorite);
+  })
+  .catch(function (err) {
+    res.status(401).json(err);
+  }); 
+});
+
+app.delete("/api/favorites/:id", function(req, res) {
+  db.Favorite.destroy({
+    where: {
+      id: req.params.id,
+    },
+  }).then(function (dbFavorite) {
+    res.json(dbFavorite);
+    console.log("Beer Deleted");
+  });
+});
+q
+}
+};
+
