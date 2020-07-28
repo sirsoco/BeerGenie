@@ -74,23 +74,23 @@ module.exports = function (app) {
       .then(({data}) => {
         console.log(data)
     
-        res.json(data);
+        return res.json(data);
         
-    /*var beer = new class beer {
+     /*new class beer {
       constructor(Id, rank, name,
       description, abv, labels)
 
       {
 
-      Id = beerData.Id  
+      Id = data.Id  
       rank = req.rank;
-      name = beerData.name;
+      name = be.name;
       description = beerData.description
       abv = beerData.abv
       labels= beerData.labels;
 
         };
-      } */
+      }*/ 
     }).catch(function (err) {
       console.log(err);
       res.status(401).json(err);
@@ -101,6 +101,7 @@ module.exports = function (app) {
 
   };
   // route for getting from favorites based off of id
+
   app.get("/api/favorites/:id", function(req, res) {db.Favorite.findOne({
     where: {
       id: req.params.id
