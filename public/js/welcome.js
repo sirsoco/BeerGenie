@@ -1,8 +1,7 @@
 // function to retrieve Data
 //Even listener for calling route for beerId
 $(document).on('click','button.search','/search.html' );
-$(document).on('submit', '#forum-search', '/api/favorites',)
-
+$(document).on('submit', '#form-search', )
 
 //function listBeer() {
    // console.log('searching for beer🕵🏿‍♂️...')

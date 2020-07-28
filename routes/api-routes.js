@@ -2,9 +2,7 @@
 var db = require("../models");
 var passport = require("../config/passport");
 var axios = require("axios");
-var search =
-// var search = require('../search')
-
+var axios = require('post-api-routes')
 module.exports = function (app) {
 
   // Using the passport.authenticate middleware with our local strategy.
@@ -56,35 +54,35 @@ module.exports = function (app) {
   // here we make an axios call to query the database for a beer
   // first we define the url for the api call
 
-  app.get("/api/favorites/search/:name", searchBeer)
+  app.get("/api/favorites/search/:id", saveBeer.then())
 
 
 
 
   function searchBeer(req, res) {
 
-     //req = $('#forum-search').val()
-     //rank = $('#rank').val()
+     req = $('#forum-search').val()
+     rank = $('#rank').val()
 
-     
+
+     req = { name: req,
+      rank: rank
+    }
     
-    const beerData = `https://api.brewerydb.com/v2/beers?key=7873bf684e7db7e59e55ea9dbc1e8d4e&name=${req.params.name}`;
+    const beerData = `https://api.brewerydb.com/v2/beers?key=7873bf684e7db7e59e55ea9dbc1e8d4e&name=${req.name}`;
     
-    axios.get(beerData)
-      .then(({data}) => {
-        console.log(data)
+    beerData = axios.get(beerData);
     
-        return res.json(data);
-        
-     /*new class beer {
+
+    var beer = new class beer {
       constructor(Id, rank, name,
       description, abv, labels)
 
       {
 
-      Id = data.Id  
+      Id = beerData.Id  
       rank = req.rank;
-      name = be.name;
+      name = beerData.name;
       description = beerData.description
       abv = beerData.abv
       labels= beerData.labels;
@@ -116,7 +114,6 @@ module.exports = function (app) {
   }); 
 });
 
-// route for deleting a beer from favorites
 app.delete("/api/favorites/:id", function(req, res) {
   db.Favorite.destroy({
     where: {
@@ -127,65 +124,5 @@ app.delete("/api/favorites/:id", function(req, res) {
     console.log("Beer Deleted");
   });
 });
-};
 
-// function postBeer(beer) {
-//     // Adds a favorite beer to the database 
-//     // Code not being associated 
-    
-    
-//     db.Favorite.create(beer).then(dbFavorite => {
-//       console.log("added adult beverage: ", dbFavorite)
-//       res.json(dbFavorite)
-//     })
-//     .catch(  (err) => {res.status(401).json(err)});
-  
-//                   };
-
-        
-            
-
-//    app.get('/api/favorite')
-//     db.Favorite.findAll({
-//       where: query,
-//       include: [db.User],
-//     })
-//       .then(function (dbFavorite) {
-//         res.json(dbFavorite);
-        
-//         console.log(dbFavorite);
-//       })
-//       .catch(function (err) {
-//         res.status(401).json(err);
-//       }); 
-// });
-
-// // route for getting from favorites based off of id
-//   app.get("/api/favorites/:id", function(req, res) {db.Favorite.findOne({
-//     where: {
-//       id: req.params.id
-//     },
-//     include: [db.User]
-// }).then(function(dbFavorite) {
-//     console.log(dbFavorite)
-//     return res.json(dbFavorite);
-//   })
-//   .catch(function (err) {
-//     res.status(401).json(err);
-//   }); 
-// });
-// // route for deleting a beer from favorites
-// app.delete("/api/favorites/:id", function(req, res) {
-//   db.Favorite.destroy({
-//     where: {
-//       id: req.params.id,
-//     },
-//   }).then(function (dbFavorite) {
-//     res.json(dbFavorite);
-//     console.log("Beer Deleted");
-//   });
-// });
-
-// }
-// };
 
