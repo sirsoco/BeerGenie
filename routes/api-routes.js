@@ -156,7 +156,7 @@ app.delete("/api/favorites/:id", function(req, res) {
     console.log("Beer Deleted");
   });
 });
-
+q
 }
 };
 
