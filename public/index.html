@@ -12,22 +12,47 @@
     <header>
         <!-- Navigation section that will redirect to other portions of the website -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">BeerGenie</a>
-            <button class="navbar-toggler" type href='button' type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="/">BeerGenie</a>
+            
+            <form>
+              <div class="form-row align-items-center">
+                <div class="col-sm-8 my-1">
+                  <label class="sr-only" for="inlineFormInputName">Name</label>
+                  <input type="text" class="form-control" id="inlineFormInputName" placeholder="Search here">
+                </div>
+                <div class="col-auto my-2">
+                  <button type="Search" class="btn btn-primary">Search</button>
+                </div>
+              </div>
+            </form>
+            
+            
+            <select name="Menu">
+              <option value="Menu">Menu</option>
+              <option value="Home">Home</option>
+              <option value="My-Profile">My Profile</option>
+              <option value="About">About</option>
+              <option value="Contact">Contact</option>
+            </select>
+
+            
+            <button class="navbar-toggler" href='button' type="button" data-toggle="collapse" 
+              data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
+              aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#Home">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="About.html">About <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="#My-Profile">My Profile</a>
+                  <a class="nav-link" href="My-Profile.html">My Profile</a>
                 </li>
                 <li class="nav-item active">
                   <a class="nav-link" href="search.html">Search</a>
-                </li>
-                
+                </li>  
               </ul>
             </div>
           </nav>
@@ -35,23 +60,23 @@
         <nav>
             <ul>
                 <!-- each of these will have a modal pop up -->
-                <li>
+                <!-- <li> -->
                     <!-- displays app information -->
-
+<!-- 
                     <a id="Search">Search</a>
                 </li>
-                <li>
+                <li> -->
                     <!-- displays app information -->
 
-                    <a href="#About">About</a>
+                    <!-- <a href="#About">About</a>
                 </li>
-                <li>
+                <li> -->
                     <!-- displays contact information -->
-                    <a href="#Contact">Contact</a>
-                </li>
+                    <!-- <a href="#Contact">Contact</a> -->
+                <!-- </li>
                 <li>
                     <a href="#Your-Ratings">Your Ratings</a>
-                </li>
+                </li> -->
     
             </ul>
         </nav>
@@ -91,52 +116,29 @@
   </div>
 
     <main>
-        <section id="Beers" class="service">
-            <img src="" alt="description of image" class="float-left" />
-            <h2>SEARCH </h2>
+        <section id="information" class="service">
+            
+            <h2>About </h2>
             <p>
-                Search for beers, breweries and more!
+                
             </p>
+            <h2> My Profile</h2>
+            <p class = profile-information></p>
         </section>
         <section id="List" class="service">
             <img src="" alt="description of image" class="float-right" />
             <h2></h2>
             <p>
-                Here are a list of all the beers you could ever want! Click one and it will add to your list.
+                
             </p>
         </section>
 
         </section>
     </main>
-    <aside class="benefits">
-        <div class="benefit">
-            <h3>Beer List</h3>
-            <img src="" alt="" />
-            <p>
-               
-            </p>
-        </div>
-        <div class="benefit">
-            <h3></h3>
-            <img src="" alt="" />
-            <p>
-                 
-            </p>
-        </div>
-        <div class="benefit">
-            <h3> </h3>
-            <img src="" alt="" />
-            <p>
-               
-            </p>
-        </div>
-    </aside>
-    <footer>
-    </footer>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type = "text/javascript" src = "./js/script.js"
+    <script type = "text/javascript" src = "./js/script.js"></script>
 
 
 </body>
