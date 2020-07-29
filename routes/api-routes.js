@@ -68,9 +68,13 @@ module.exports = function (app) {
         // we are using a get method to retrieve data
         .get(queryURL)
         .then(function (response) {
-          console.log(response.data.data[0]);
+          // console.log(response.data.data[0]);
           res.json({
-            id: response.data.data[0],
+            id: response.data.data[0].id,
+            name: response.data.data[0].name,
+            description: response.data.data[0].description,
+            abv: response.data.data[0].abv
+
           });
         });
     });
