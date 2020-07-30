@@ -1,6 +1,10 @@
+
+
+//By team SEB
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
+var untappd = require("../node_modules/untappd");
 
 //importing library
 const Beer = require("../lib/beer.js")
@@ -57,7 +61,8 @@ module.exports = function (app) {
   // here we make an axios call to query the database for a beer
   // first we define the url for the api call
 
-  app.get("/api/favorites/search/:id",function() {Beer.saveBeer})  
+ 
+  
     // return //renderFavorites(beer)
 
   
@@ -88,6 +93,56 @@ app.delete("/api/favorites/:id", function(req, res) {
   });
 });
 
-};
+/*
+// An example of how to use the UntappdClient.
+
+// Definitions
+
+// Replace this with your CLIENT ID
+var clientId = "[ C07D8B1B31F42D67ABDAB78E49204B7E69788672]";
+
+// Replace this with your CLIENT SECRET
+var clientSecret = "[ 2CBAEF54C119820777DADB2E0E6ACE4115E95295]";
+
+// Set to true if you want to see all sort of nasty output on stdout
+var debug = false;
+
+// The user we want to lookup for this example
+var data = {};
+	data.USERNAME = "[ sirsoco ]";
 
 
+
+// Create Client
+//var untappd = new Untappd(debug);
+//untappd.setClientId(clientId);
+//untappd.setClientSecret(clientSecret);
+
+// EXAMPLE - List last 25 recent checkins of the given user
+untappd.userActivityFeed(function(err, obj) {
+  console.log('hello')
+	if (debug)
+		console.log(err, obj);
+	if (obj && obj.response && obj.response.checkins && obj.response.checkins.items) {
+		var beers = obj.response.checkins.items.forEach(function(checkin) {
+			console.log(checkin);
+			console.log(checkin.user.user_name, "drank", checkin.beer.beer_name);
+			console.log("by", checkin.brewery.brewery_name);
+			if (checkin.venue.venue_name)
+				console.log("at", checkin.venue.venue_name);
+			console.log("on", checkin.created_at);
+		});
+	} else {
+		console.log(err, obj);
+	}
+}, data);
+
+//app.
+
+///express method for third-party api calls
+//app.get('/beerme'){
+  //url =
+
+ // app.post("/authentication", passport.authenticate("local"), function (req, res) {
+    //url = 'https//untappd.com/oauth/authenticate/?//client_id=CLIENTID&response_type=code&redirect_url=REDIRECT_URL';
+  }

@@ -1,54 +1,30 @@
-$(document).ready(loadPage) 
+$(document).ready(carousel)
+$(document).ready(favTable)
+function carousel() {
+$('.carousel').carousel({interval:7000});
+}
 
-function loadPage() {
 
-    ()
+function favTable(q) {
+
+    const client_id = 'C07D8B1B31F42D67ABDAB78E49204B7E69788672';
+    const client_secret ='CBAEF54C119820777DADB2E0E6ACE4115E95295'
+    
+    var queryURL = `/api.untappd.com/v4/search/beer?client_id=`+ client_id+`&client_secret=`+client_secret+`${}`
+
+    var table = $('#favTable');
+    table.text()
+    
+    app.get(queryURL)
+
+
+    //what happend?
+   
+
+    
 }
 
 
 
 
-
-
-
-
-
-
-function searchBeer(req, res) {
-
-        req = $('#forum-search').val()
-        rank = $('#rank').val()
-   
-   
-        req = { name: req,
-         rank: rank
-       }
-       
-       const beerData = `https://api.brewerydb.com/v2/beers?key=7873bf684e7db7e59e55ea9dbc1e8d4e&name=${req.name}`;
-       
-       beerData = axios.get(beerData);
-       
-   
-        class beer {
-         constructor(Id, rank, name,
-         description, abv, labels)
-   
-         {
-   
-         Id = beerData.Id  
-         rank = req.rank;
-         name = beerData.name;
-         description = beerData.description
-         abv = beerData.abv
-         labels= beerData.labels;
-   
-           };
-
-           
-         } 
-         
-       }).catch(function (err) {
-         console.log(err);
-         res.status(401).json(err);
-   
-       });
+https://api.untappd.com/v4/method_name?client_id=CLIENTID&client_secret=CLIENTSECRET
