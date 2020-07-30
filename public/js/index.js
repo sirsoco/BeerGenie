@@ -1,10 +1,13 @@
+/*
+
 $(document).ready(carousel)
 $(document).ready(favTable)
 function carousel() {
 $('.carousel').carousel({interval:7000});
 }
+*/
 
-
+/*
 function favTable(q) {
 
     const client_id = 'C07D8B1B31F42D67ABDAB78E49204B7E69788672';
@@ -18,6 +21,8 @@ function favTable(q) {
     app.get(queryURL)
 
 
+
+
     //what happend?
    
 
@@ -28,3 +33,4 @@ function favTable(q) {
 
 
 https://api.untappd.com/v4/method_name?client_id=CLIENTID&client_secret=CLIENTSECRET
+*/
