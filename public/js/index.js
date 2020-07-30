@@ -1,6 +1,20 @@
-$(document).ready(function() {
+$(document).ready(loadPage) 
 
-    function searchBeer(req, res) {
+function loadPage() {
+
+    ()
+}
+
+
+
+
+
+
+
+
+
+
+function searchBeer(req, res) {
 
         req = $('#forum-search').val()
         rank = $('#rank').val()
@@ -38,4 +52,3 @@ $(document).ready(function() {
          res.status(401).json(err);
    
        });
-}

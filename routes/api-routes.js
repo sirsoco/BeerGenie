@@ -62,7 +62,7 @@ module.exports = function (app) {
 
   
   // route for getting from favorites based off of id
-
+  
   app.get("/api/favorites/:id", function(req, res) {db.Favorite.findOne({
     where: {
       id: req.params.id

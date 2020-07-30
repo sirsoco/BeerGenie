@@ -2,9 +2,6 @@
 //Even listener for calling route for beerId
 
 
-
-
-
 $(document).on('click','button.search','/search.html' );
 $(document).on('submit', '#form-search','/search.html' );
 
