@@ -3,7 +3,8 @@
 
 
 $(document).on('click','button.search','/search.html' );
-$(document).on('submit', '#form-search','/search.html' )
+$(document).on('submit', '#form-search','/search.html' );
+
 
 //function listBeer() {
    // console.log('searching for beer🕵🏿‍♂️...')

@@ -1,7 +1,11 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
-var axios = require("axios");
+
+//importing library
+const Beer = require("../lib/beer.js")
+
+
 module.exports = function (app) {
 
   // Using the passport.authenticate middleware with our local strategy.
@@ -53,35 +57,9 @@ module.exports = function (app) {
   // here we make an axios call to query the database for a beer
   // first we define the url for the api call
 
-  // app.get("/api/favorites/search/:name", saveBeer.then())
-
-
-
-
-  // function searchBeer(req, res) {
-
-    
-    
-    app.get("/api/favorites/search/:id", function (req, res) {
-      const queryURL = `https://api.brewerydb.com/v2/beers?key=7873bf684e7db7e59e55ea9dbc1e8d4e&name=${req.params.id}`;
-      axios
-        // we are using a get method to retrieve data
-        .get(queryURL)
-        .then(function (response) {
-          // console.log(response.data.data[0]);
-          res.json({
-            id: response.data.data[0].id,
-            name: response.data.data[0].name,
-            description: response.data.data[0].description,
-            abv: response.data.data[0].abv
-
-          });
-        });
-    });
-  // }
-    
+  app.get("/api/favorites/search/:id",function() {Beer.saveBeer})  
     // return //renderFavorites(beer)
-  
+
   
   // route for getting from favorites based off of id
   
@@ -109,4 +87,7 @@ app.delete("/api/favorites/:id", function(req, res) {
     console.log("Beer Deleted");
   });
 });
+
 };
+
+
