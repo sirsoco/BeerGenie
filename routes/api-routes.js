@@ -4,7 +4,7 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
-var untappd = require("../node_modules/untappd");
+console.log("#1")
 
 //importing library
 const Beer = require("../lib/beer.js")
@@ -93,14 +93,27 @@ app.delete("/api/favorites/:id", function(req, res) {
   });
 })
 
-app.get('/api/axios', function (req, res) {
+app.get('api/untappd', function (req, res) {
+console.log("hello");
 
- 
+  const client_id = 'C07D8B1B31F42D67ABDAB78E49204B7E69788672';
 
-const url = `https://api.brewerydb.com/v2/beers?key=7873bf684e7db7e59e55ea9dbc1e8d4e&name=${req.params.getname}`;
+  const client_secret= 'CBAEF54C119820777DADB2E0E6ACE4115E95295';
+
+  q = req.params.name;
+  client
+  url =`https://api.untappd.com/v4/search/beer? + ${req.params.client_id}&${client_secret}`
+
+  res.json(beerData);
+  console.log(beerData);
+
+
+  
+
+//const url = `https://api.brewerydb.com/v2/beers?key=7873bf684e7db7e59e55ea9dbc1e8d4e&name=${req.params.name}`;
     
-console.log(res.json(beerData))
-    beerData = axios.get(url);
+//res.body
+  //  beerData = axios.get(url);
 })
 
 }

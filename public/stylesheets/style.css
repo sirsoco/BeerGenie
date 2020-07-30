@@ -1,8 +1,4 @@
 
- 
-
-
-
 .Genie {
   border-color: black
   
@@ -12,7 +8,9 @@
     width: 25%;
     height: 50%; 
     margin: 25%;
+    padding:25%;
     background-color: goldenrod;
+    
 }
 
 .favortiesTable {
@@ -24,8 +22,9 @@
 body {
     height: 100%;
     width: 100%;
+    background-color: darkgrey;
     background-size: cover;
-background-image: url('beer.jpeg');
+
   }
 
 .container{
@@ -34,7 +33,9 @@ background-image: url('beer.jpeg');
     position: center;
 }
 
-
+.navbar{
+    background-color: goldenrod;
+}
 
 
 

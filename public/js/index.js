@@ -1,3 +1,11 @@
+
+//const Beer = require('./lib/beers.js');
+
+
+
+console.log("hello")
+
+
 /*
 
 $(document).ready(carousel)
@@ -6,6 +14,8 @@ function carousel() {
 $('.carousel').carousel({interval:7000});
 }
 */
+
+
 
 /*
 function favTable(q) {
@@ -34,3 +44,17 @@ function favTable(q) {
 
 https://api.untappd.com/v4/method_name?client_id=CLIENTID&client_secret=CLIENTSECRET
 */
+
+console.log("hello");
+
+$ajax('api/untappd')
+    
+
+
+
+function postFavs() {
+    
+    console.log("postfavs")
+    return  
+   
+}

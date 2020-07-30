@@ -1,10 +1,13 @@
 // Requiring necessary npm packages
 var express = require("express");
 var session = require("express-session");
+var axios = require('axios')
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 
-var untappd = require("./node_modules/untappd");
+var untappd = require("untappd");
+
+var Beer = require('./lib/beer.js')
 
 // Setting up port and requiring models for syncing
 var PORT = process.env.PORT || 8080;
@@ -23,6 +26,7 @@ app.use(passport.session());
 // Requiring our routes
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
+
 // require('./routes/post-api-routes.js')(app);
 
 // Syncing our database and logging a message to the user upon success
