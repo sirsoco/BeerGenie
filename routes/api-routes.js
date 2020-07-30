@@ -91,58 +91,16 @@ app.delete("/api/favorites/:id", function(req, res) {
     res.json(dbFavorite);
     console.log("Beer Deleted");
   });
-});
+})
 
-/*
-// An example of how to use the UntappdClient.
+app.get('/api/axios', function (req, res) {
 
-// Definitions
+ 
 
-// Replace this with your CLIENT ID
-var clientId = "[ C07D8B1B31F42D67ABDAB78E49204B7E69788672]";
+const url = `https://api.brewerydb.com/v2/beers?key=7873bf684e7db7e59e55ea9dbc1e8d4e&name=${req.params.getname}`;
+    
+console.log(res.json(beerData))
+    beerData = axios.get(url);
+})
 
-// Replace this with your CLIENT SECRET
-var clientSecret = "[ 2CBAEF54C119820777DADB2E0E6ACE4115E95295]";
-
-// Set to true if you want to see all sort of nasty output on stdout
-var debug = false;
-
-// The user we want to lookup for this example
-var data = {};
-	data.USERNAME = "[ sirsoco ]";
-
-
-
-// Create Client
-//var untappd = new Untappd(debug);
-//untappd.setClientId(clientId);
-//untappd.setClientSecret(clientSecret);
-
-// EXAMPLE - List last 25 recent checkins of the given user
-untappd.userActivityFeed(function(err, obj) {
-  console.log('hello')
-	if (debug)
-		console.log(err, obj);
-	if (obj && obj.response && obj.response.checkins && obj.response.checkins.items) {
-		var beers = obj.response.checkins.items.forEach(function(checkin) {
-			console.log(checkin);
-			console.log(checkin.user.user_name, "drank", checkin.beer.beer_name);
-			console.log("by", checkin.brewery.brewery_name);
-			if (checkin.venue.venue_name)
-				console.log("at", checkin.venue.venue_name);
-			console.log("on", checkin.created_at);
-		});
-	} else {
-		console.log(err, obj);
-	}
-}, data);
-
-//app.
-
-///express method for third-party api calls
-//app.get('/beerme'){
-  //url =
-
- // app.post("/authentication", passport.authenticate("local"), function (req, res) {
-    //url = 'https//untappd.com/oauth/authenticate/?//client_id=CLIENTID&response_type=code&redirect_url=REDIRECT_URL';
-  }
+}
