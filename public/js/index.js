@@ -47,7 +47,7 @@ https://api.untappd.com/v4/method_name?client_id=CLIENTID&client_secret=CLIENTSE
 
 console.log("hello");
 
-$ajax('api/untappd')
+$.ajax('api/untappd')
     
 
 

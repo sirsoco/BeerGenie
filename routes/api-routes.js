@@ -64,7 +64,7 @@ module.exports = function (app) {
  
   
     // return //renderFavorites(beer)
-
+ 
   
   // route for getting from favorites based off of id
   

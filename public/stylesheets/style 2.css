@@ -1,0 +1,45 @@
+
+.Genie {
+  border-color: black
+  
+}
+
+.row{
+    width: 25%;
+    height: 50%; 
+    margin: 25%;
+    padding:25%;
+    background-color: goldenrod;
+    
+}
+
+.favortiesTable {
+  background-color: aqua;
+  
+
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    background-color: darkgrey;
+    background-size: cover;
+
+  }
+
+.container{
+    width:25%;
+    height: 25%;
+    position: center;
+}
+
+.navbar{
+    background-color: goldenrod;
+}
+
+
+
+
+
+
+

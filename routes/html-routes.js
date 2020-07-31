@@ -7,8 +7,9 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = function(app) {
   app.get("/", isAuthenticated, function(req, res){
 
-  res.sendFile(path.join(__dirname, "../public/index.html"))
+  res.sendFile(path.join(__dirname, "../public/login.html"))
 });
+
   app.get("/signup", function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
@@ -39,6 +40,10 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, '../public/index.html'))
   });
 
-  
+  //route for creating an account
+  app.get('/signup', isAuthenticated, function(req, res){
+    res.sendFile(path.join(__dirname, '../public/signup.html'))
+  });
 
+  
 };
