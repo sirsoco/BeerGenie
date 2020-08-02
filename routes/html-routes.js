@@ -4,8 +4,11 @@ var path = require("path");
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
+// requiring passport as we've configured it
+var passport = require('../config/passport');
+
 module.exports = function(app) {
-  app.get("/", isAuthenticated, function(req, res){
+  app.get("/index", isAuthenticated, function(req, res){
 
   res.sendFile(path.join(__dirname, "../public/login.html"))
 });
@@ -38,7 +41,7 @@ module.exports = function(app) {
 
   app.get('/index', isAuthenticated, function(req, res){
     res.sendFile(path.join(__dirname, '../public/index.html'))
-  });
+  }); 
 
   //route for creating an account
   app.get('/signup', isAuthenticated, function(req, res){

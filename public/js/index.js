@@ -40,14 +40,13 @@ function favTable(q) {
 }
 
 
-
-
-https://api.untappd.com/v4/method_name?client_id=CLIENTID&client_secret=CLIENTSECRET
+cxk
+https://api.untappd.com/v4/search/beer?client_id=CLIENTID&client_secret=CLIENTSECRET
 */
 
-console.log("hello");
 
-$.ajax('api/untappd')
+
+
     
 
 

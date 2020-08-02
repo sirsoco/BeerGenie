@@ -1,15 +1,19 @@
+// requiring necessary npm packages
+const axios = require('axios');
+const UntappdClient = require('untappd');
 
+// requiring passport as we've configured it
+var passport = require('../config/passport');
 
-//By team SEB
-// Requiring our models and passport as we've configured it
-var db = require("../models");
-var passport = require("../config/passport");
-console.log("#1")
+//client id & client secret 
+const CLIENTID = 'C07D8B1B31F42D67ABDAB78E49204B7E69788672';
+const CLIENTSECRET = '2CBAEF54C119820777DADB2E0E6ACE4115E95295';
 
-//importing library
-const Beer = require("../lib/beer.js")
+//beer lib
+var Beer = require('../lib/beer.js');
 
-
+//building url
+var url = `https://api.untappd.com/v4/search/beer?client_id=${CLIENTID}&client_secret=${CLIENTSECRET}`;
 module.exports = function (app) {
 
   // Using the passport.authenticate middleware with our local strategy.
@@ -35,13 +39,13 @@ module.exports = function (app) {
       });
   });
 
-  // Route for logging user out
+  // route for logging user out
   app.get("/logout", function (req, res) {
     req.logout();
     res.redirect("/login");
   });
 
-  // Route for getting some data about our user to be used client side
+  // route for getting some data about our user to be used client side
   app.get("/api/user_data", function (req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
@@ -56,18 +60,8 @@ module.exports = function (app) {
     }
   });
 
-//function to link to search
 
-  // here we make an axios call to query the database for a beer
-  // first we define the url for the api call
-
- 
-  
-    // return //renderFavorites(beer)
- 
-  
-  // route for getting from favorites based off of id
-  
+  // route for getting a beer from BeerGenie API 
   app.get("/api/favorites/:id", function(req, res) {db.Favorite.findOne({
     where: {
       id: req.params.id
@@ -82,6 +76,7 @@ module.exports = function (app) {
   }); 
 });
 
+// route to delete a beer from BeerGenie API
 app.delete("/api/favorites/:id", function(req, res) {
   db.Favorite.destroy({
     where: {
@@ -93,20 +88,16 @@ app.delete("/api/favorites/:id", function(req, res) {
   });
 })
 
-app.get('api/untappd', function (req, res) {
-console.log("hello");
+//route for searching a beer
+app.get(url, function(req, res1){
 
-  const client_id = 'C07D8B1B31F42D67ABDAB78E49204B7E69788672';
+})
+  // route for getting from favorites based off of id
+  
 
-  const client_secret= 'CBAEF54C119820777DADB2E0E6ACE4115E95295';
 
-  q = req.params.name;
-  client
-  url =`https://api.untappd.com/v4/search/beer? + ${req.params.client_id}&${client_secret}`
 
-  res.json(beerData);
-  console.log(beerData);
-
+  
 
   
 
@@ -114,6 +105,4 @@ console.log("hello");
     
 //res.body
   //  beerData = axios.get(url);
-})
-
-}
+};
