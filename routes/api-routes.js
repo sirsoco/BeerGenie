@@ -55,66 +55,60 @@ module.exports = function (app) {
 
 
   // route for getting a beer from BeerGenie API 
-  app.get('/api/favorites/:id', function(req, res) {db.Favorite.findOne({
-    where: {
-      id: req.params.id
-    },
-    include: [db.User]
-}).then(function(dbFavorite) {
-    console.log(dbFavorite)
-    return res.json(dbFavorite);
-  })
-  .catch(function (err) {
-    res.status(401).json(err);
-  }); 
-});
-
-// route to delete a beer from BeerGenie API
-app.delete('/api/favorites/:id', function(req, res) {
-  db.Favorite.destroy({
-    where: {
-      id: req.params.id,
-    },
-  }).then(function (dbFavorite) {
-    res.json(dbFavorite);
-    console.log('Beer Deleted');
+  app.get('/api/favorites/:id', function (req, res) {
+    db.Favorite.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [db.User]
+    }).then(function (dbFavorite) {
+      console.log(dbFavorite)
+      return res.json(dbFavorite);
+    })
+    .catch(function (err) {
+      res.status(401).json(err);
+    });
   });
-})
 
- //route for searching a beer
- //app.get('/search/beer', function(req, res){
-// console.log(data);
+  // route to delete a beer from BeerGenie API
+  app.delete('/api/favorites/:id', function (req, res) {
+    db.Favorite.destroy({
+      where: {
+        id: req.params.id,
+      },
+    }).then(function (dbFavorite) {
+      res.json(dbFavorite);
+      console.log('Beer Deleted');
+    });
+  })
 
-//   var url = `https://api.untappd.com/v4/search/beer?q=${req.params.id}&client_id=${CLIENTID}&client_secret=${CLIENTSECRET}`;
-//   console.log(url);
-// });
+  //route for searching a beer
+  //app.get('/search/beer', function(req, res){
+  // console.log(data);
 
-//brewery db api call 
-app.get('/api/search/', function (req, res) {
-  console.log('hello');
-  var id = 'blue'
-  const queryURL = `https://api.brewerydb.com/v2/beers?key=7873bf684e7db7e59e55ea9dbc1e8d4e&name=${id}`
-  
-  console.log('waiting for search results')
-  
-  //console.log(queryURL);
-  //$('.container-favorites').append(queryURL)
-  //axios
-    // we are using a get method to retrieve data
-    //.get(`queryURL`, function (response) {
-      //console.log(response.data.data[0])
-      //return  get('/index.html')
-      
-      
-      //res.json(response.data.data[0])
-    //}).catch( function (err) {
-      //res.status(401).json(err);
-  //}); 
-  //})
-//}
+  //   var url = `https://api.untappd.com/v4/search/beer?q=${req.params.id}&client_id=${CLIENTID}&client_secret=${CLIENTSECRET}`;
+  //   console.log(url);
+  // });
 
-  //   // .catch(function (err) {
-  //   res.status(401).json(err);
-    // }); 
-})
+  //brewery db api call 
+  app.get('/api/search/', function (req, res) {
+    var id = 'blue'
+    const queryURL = `https://api.brewerydb.com/v2/beers?key=7873bf684e7db7e59e55ea9dbc1e8d4e&name=${id}`
+    console.log(queryURL);
+    axios.get(queryURL).then(function ({data}) {
+      console.log(data)
+      res.json(data)
+    }
+      // const repoNames = res.data.map(function(repo) {
+      // return repo.name;
+
+    ).catch(function (err) {
+      console.log(err)
+      res.status(401).json(err);
+    });
+  })
 };
+
+
+//)
+//};

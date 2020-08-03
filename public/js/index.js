@@ -1,5 +1,4 @@
 // var UntappdClient = require("./UntappdClient",false);
-console.log('index.js')
 
 // selecting the form with class search.  On submit run the postFavorite function
 //var q =('form.search').text()
