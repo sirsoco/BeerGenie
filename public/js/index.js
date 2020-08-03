@@ -1,59 +1,51 @@
+// var UntappdClient = require("./UntappdClient",false);
+console.log('index.js')
 
-//const Beer = require('./lib/beers.js');
+// selecting the form with class search.  On submit run the postFavorite function
+//var q =('form.search').text()
 
+//var clientId='C07D8B1B31F42D67ABDAB78E49204B7E69788672';
 
+//var clientSecret='2CBAEF54C119820777DADB2E0E6ACE4115E9';
 
-console.log("hello")
+//event listener for searching
+//$('form.search').on('submit','api/favorites/search')
 
+//`/v4/search/beer${req.param.q}+${req.param.clientId}+${req.param.clientSecret} `
 
-/*
+//entering client id & secret
 
-$(document).ready(carousel)
-$(document).ready(favTable)
-function carousel() {
-$('.carousel').carousel({interval:7000});
-}
-*/
+// function postFavorite() {
+//    console.log('hello'); 
+// //var clientId='C07D8B1B31F42D67ABDAB78E49204B7E69788672';
+// //var clientSecret='2CBAEF54C119820777DADB2E0E6ACE4115E9';
 
-
-
-/*
-function favTable(q) {
-
-    const client_id = 'C07D8B1B31F42D67ABDAB78E49204B7E69788672';
-    const client_secret ='CBAEF54C119820777DADB2E0E6ACE4115E95295'
-    
-    var queryURL = `/api.untappd.com/v4/search/beer?client_id=`+ client_id+`&client_secret=`+client_secret+`${}`
-
-    var table = $('#favTable');
-    table.text()
-    
-    app.get(queryURL)
+// console.log(clientSecret);
+// console.log(clientId);
 
 
+//selecting q
+//var data ={};
+//data.q = $('form.search').text();
+
+//setting client id & client secret 
+// var untappd = new UntappdClient(debug);
+// untappd.setClientId(clientId);
+// untappd.setClientSecret(clientSecret);
+
+//call to search beer 
+// untapped.beerSearch( function(err, obj)
+// {
+// console.log(res.json(obj))
+// }
+
+// )};
 
 
-    //what happend?
+// make event listener for search bar
+/* 1) select the element
+    2) assign it the route
+    3)capture the data
+    4) append it to the page*/
+
    
-
-    
-}
-
-
-cxk
-https://api.untappd.com/v4/search/beer?client_id=CLIENTID&client_secret=CLIENTSECRET
-*/
-
-
-
-
-    
-
-
-
-function postFavs() {
-    
-    console.log("postfavs")
-    return  
-   
-}
