@@ -91,8 +91,8 @@ module.exports = function (app) {
   // });
 
   //brewery db api call 
-  app.get('/api/search/', function (req, res) {
-    var id = 'blue'
+  app.get('/api/search/:beername', function (req, res) {
+    var id = req.params.beername
     const queryURL = `https://api.brewerydb.com/v2/beers?key=7873bf684e7db7e59e55ea9dbc1e8d4e&name=${id}`
     console.log(queryURL);
     axios.get(queryURL).then(function ({data}) {
