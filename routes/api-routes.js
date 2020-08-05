@@ -101,7 +101,7 @@ module.exports = function (app) {
   });
 
 //route to search using untappd API
-app.get('/search', function (req, res) {
+app.get('/api/search', function (req, res) {
  
   //selecting he string value of beer search
  
@@ -114,7 +114,8 @@ app.get('/search', function (req, res) {
   };
   
   axios(config)
-  .then(function (response) {
+  .then(function ({response}) {
+  
     console.log(JSON.stringify(response.data));
   })
   .catch(function (error) {

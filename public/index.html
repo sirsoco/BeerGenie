@@ -4,41 +4,34 @@
     <title>BeerGeenie</title>
     <meta charset='UTF-8' name='viewport' content = 'width= device-width, initial-scale=1'  >
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-
     <script src='https://kit.fontawesome.com/f5f595d3a8.js' crossorigin='anonymous'></script>
-
     <link rel='stylesheet' type='text/css' href='stylesheets/style.css'>
-
     <link href='https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap' rel='stylesheet'>
 </head>
 <header>
-  <!-- nav --><div class="pos-f-t">
-
+  <!-- nav -->
+  <div class="pos-f-t">
   <div class="collapse" id="navbarToggleExternalContent">
-    
-    <div class="p-4">
-      <h4 class="text-white">
+    <div class="p-2">
         <ul class='navbar-nav'> 
         <li class='nav-item active '>
           <a class='nav-link' href='#'>Home <span class='sr-only'></span></a>
         <li class='nav-item'>
           <a class='nav-link' href='#'>My Profile</a>
         </li>
-        <li class= "nav-item" >
-            <form action = '/v4/search/beer'  method = 'get>
-              <input type="text" id="search" name='q'>
-              <input type="submit" value="Submit">
-            </form>
-          </li>
-      </ul></h4>
+      </ul>
+
       <span class="text-muted">Toggleable via the navbar brand.</span>
     </div>
   </div>
-  <nav class="navbar navbar-dark ">
+  <nav class="navbar navbar-light style=" style = 'background-color: #97811B' >
     <h1 class="navbar-brand text-white" href="#"> 
       <i class="fas fa-beer">BeerGenie</i>
+      <form class='nav-item search'>
+        <input class = 'q' type = 'text'> 
+        <input type="submit" value="Submit">
+      </form>
     </h1> 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

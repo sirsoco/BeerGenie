@@ -3,13 +3,13 @@ nav{
 }
 
 body {
-  background-color: black;
+  background-color: white;
 }
 div.container-favs {
     margin-right: 1%;
     margin-left: 1%;    
     border-radius: 1%;
-    padding-bottom:135%;
+    padding-bottom:100%;
     opacity:60%;
     background-image: url('logo.png');
     background-size: cover;
