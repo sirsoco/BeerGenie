@@ -80,7 +80,7 @@ module.exports = function (app) {
       res.json(dbFavorite);
       console.log('Beer Deleted');
     });
-  })
+  });
 
   // route to search using brewery API 
   app.get('/api/search/:beername', function (req, res) {
@@ -103,24 +103,25 @@ module.exports = function (app) {
 //route to search using untappd API
 app.get('/api/search', function (req, res) {
  
-  //selecting he string value of beer search
+  //selecting the string value of beer search
  
   //assiging the beer parameter for middleware function
     
   var config = {
     method: 'get',
     url: `https://api.untappd.com/v4/search/beer?q=blue&client_id=C07D8B1B31F42D67ABDAB78E49204B7E69788672&client_secret=2CBAEF54C119820777DADB2E0E6ACE4115E95295`,
-    headers: { }
+    headers: { },
+    offset: 0,
+    
   };
-  
+  console.log(config.url);
   axios(config)
-  .then(function ({response}) {
-  
-    console.log(JSON.stringify(response.data));
+  .then(function (reply) {
+    var beers = (JSON.stringify(reply.data.response.beers));
+    var beersArray = beers.split(",")
+    console.log(beersArray[0]);
   })
   .catch(function (error) {
     console.log(error);
-  });
-})
-
-};
+  })}
+)};
