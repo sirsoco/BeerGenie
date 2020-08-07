@@ -1,6 +1,7 @@
 // requiring necessary npm packages
 const express = require('express');
 const session = require('express-session');
+var bodyParser = require('body-parser')
 
 // requiring passport as we've configured it
 var passport = require('./config/passport');
@@ -19,8 +20,7 @@ app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true 
 app.use(passport.initialize());
 app.use(passport.session());
 
-var UntappdClient = require("node-untappd");
-var untapped = require('untappd');
+
 
 // importing routes
 require('./routes/html-routes.js')(app);

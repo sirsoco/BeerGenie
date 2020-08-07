@@ -1,22 +1,25 @@
 nav{
   border-radius: 1%;
+  background-color: rgb(255, 215, 93)
 }
 
 body {
-  background-color: #0F0F0F;
+  margin:1%;
+  background-color:rgb(255, 215, 93)
 }
+
 div.container-favs {
     margin-right: 1%;
     margin-left: 1%;    
     border-radius: 1%;
-    padding-bottom:100%;
+    padding-bottom:115%;
     opacity:60%;
     background-image: url('logo.png');
     background-size: cover;
     background-position: center;
     position: center;
    
-}
+};
 
 
 
@@ -24,14 +27,15 @@ div.container-favs {
     position: fixed;
     width: 100%;
     height: 100%;
-  }
+    background-color: #CBA445;
+    color:  rgb(255, 215, 93);
+  };
 
 
 footer {
-  background-color: #CBA445;
+  background-color: rgb(255, 215, 93);
   border-radius: 1%;
   margin: 1%;
-  
-}
+};
 
 
