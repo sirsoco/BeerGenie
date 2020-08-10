@@ -10,12 +10,12 @@ $(document).ready(function () {
     console.log("searched");
     var beername = { q: qInput.val() };
     req.body.beername;
-    app.post("/api/search/:beername", function () {
-      //selecting serch parameters
+    app.post("/api/search/:beername", postFavorites)
 
-      console.log(q);
-      // return console.log(JSON.stringify(q));
-      // need condition to alert if search not entered
+  function postFavorites(authorData) {
+        $.post("/api/authors", authorData)
+          .then(getAuthors);
+      }
+    })
+   
     });
-  });
-});

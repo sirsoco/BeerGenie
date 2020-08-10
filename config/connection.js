@@ -19,3 +19,5 @@ var sequelize = new Sequelize("beergenie_db", "root", "", {
 
 // Exports the connection for other files to use
 module.exports = sequelize;
+
+//Creates a beer that matches 
