@@ -14,7 +14,9 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
           min: 0,
           max:5
-      }
+      },
+      UserId: {type: DataTypes.STRING,
+    allowNull: false},
   }
   });
   Favorite.associate = function (models) {

@@ -88,21 +88,20 @@ app.post('/api/favorites', function(req, res) {
         // beersArray
         var beer_ = beersArray.slice(4)
         beerName = req.body
-
+        console.log(beerName)
         //console.log(beer_);
 
         // Add a beer to the database using sequelize
         db.Favorite.create({
 
-            beerName: req.body.beerName,
+            beerName: id,
+            UserId: 1,
+            beerData: beer_
+
           })
         
-      }
-      ).then( (beer_) => {axios.get('/postFavorites')}//).then(function(beer_) {
-        //return console.log('hello')})
-
-      )
-      .catch(function (error) {
+      },
+      ).then(function() {res.redirect("/")}).catch(function (error) {
         console.log(error);
   });
 });

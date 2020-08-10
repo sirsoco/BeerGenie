@@ -1,3 +1,4 @@
+  
 $(document).ready(function () {
   // refrences to form and searchh params
   var searchForm = $("form.search");
@@ -10,8 +11,9 @@ $(document).ready(function () {
     console.log("searched");
     var beername = { q: qInput.val() };
     req.body.beername;
-    app.post('/api/search/:beername', postFavorites)
+    app.post("/api/search/:beername", postFavorites)
+
   
+    })
    
     });
-  });
