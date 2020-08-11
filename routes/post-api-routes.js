@@ -1,4 +1,6 @@
+//dependecies
 var db = require("../models");
+var axios = require("axios");
 
 // Retrieves all the beers saved by a user
 module.exports = function (app) {
@@ -60,4 +62,59 @@ app.post("/api/favorites", function(req, res) {
     });
   });
 
+    // post route to search using untappd API
+    app.post('/api/search/:q', function (req, res) {
+      console.log('beername');
+       //selecting he string value of beer search
+      //assiging the beer parameter for middleware function
+  
+      var id = req.body.q;
+      var sort = 'name'
+      var limit = 1
+      var offset = 2
+      console.log(id);
+    
+      // config 
+      var config = {
+        method: 'get', 
+        url: `https://api.untappd.com/v4/search/beer?q=${id}&client_id=C07D8B1B31F42D67ABDAB78E49204B7E69788672&client_secret=2CBAEF54C119820777DADB2E0E6ACE4115E95295&sort=${sort}&offset=${offset}&limit=${limit}`
+      };
+      console.log(config.url);
+      axios(config)
+        .then(function (reply) {
+         
+          var beers = JSON.stringify(reply.data.response.beers);
+          var beersArray = beers.split(',');
+
+          console.log(beersArray)
+          var beer_data = beersArray.slice(4)
+          console.log(beer_data)
+          
+         
+
+          beer_name = beer_data[0]
+          
+          
+          //console.log(beer_);
+  
+          // Add a beer to the database using sequelize
+           return db.Favorite.create({
+  
+              beerName: beer_name,
+              beerData: beer_data,
+              UserId: 1
+            }); 
+          
+        }, (data) => { postFavorites(data)}
+        )//.then( (beer_) => {axios.get('/postFavorites')}//).then(function(beer_) {
+          //return console.log('hello')})
+  
+        //)
+        .catch(function (error) {
+          console.log(error);
+    });
+  });
+
 };
+
+

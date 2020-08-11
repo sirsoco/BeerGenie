@@ -2,7 +2,11 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Favorite = sequelize.define("Favorite", {
-    beer_id: DataTypes.STRING,
+    beerName: {type: DataTypes.STRING,
+    allowNull: false},
+    beerData: {
+      type: DataTypes.JSON,
+      allowNull: false},
     rank: {
       type: DataTypes.INTEGER,
       allowNull: true,
