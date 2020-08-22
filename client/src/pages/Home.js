@@ -22,7 +22,7 @@ class Home extends Component {
   };
   handleInputChange = (event) => {
     const { name, value } = event.target;
-    this.setState3({
+    this.setState({
       [name]: value,
     });
   };
@@ -77,10 +77,11 @@ class Home extends Component {
     <Form inline handleInputChange ={this.handleInputChange} handleFormSubmit ={this.handleFormSubmit}
     q={this.state.q}>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-success">Search</Button>
+      <Button onClick = {console.log("hello")} variant="outline-success">Search</Button>
     </Form>
   </Navbar.Collapse>
 </Navbar>
+
  
   </Col>
   </Row>
