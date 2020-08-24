@@ -1,94 +1,113 @@
-import React, { Component } from 'react';
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
-import NavDropdown from 'react-bootstrap/NavDropDown'
-import API from '../utils/API';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col'
-import { FaBeer } from 'react-icons/fa';
-import './styles.css'
+import React, {  useState } from "react";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropDown";
+import API from "../utils/API";
+import Form from "react-bootstrap/form";
+import Button from "react-bootstrap/button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { FaBeer } from "react-icons/fa";
+import "./styles.css";
 
+function Home() {
+  
 
+  const [q, setQ] = useState();
+  const [beer_name, setbeer_name] = useState()
+  const [beer_label, setLabel] =
+  useState()
+  const [beer_description, setDescription] = useState() 
 
-class Home extends Component {
-  state = {
-    beers: [],
-    q: "",
-    message: "Search for a Beer",
-  };
-  handleInputChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
-  };
+  //handleInputChange = (event) => {
 
-  getBeers = () => {
-    API.getBeers(this.state.q)
-      .then((res) =>
-        this.setState({
-          beers: res.data,
-        })
-      )
-      .catch(() =>
-        this.setState({
-          books: [],
-          message: "No beers found, Try again",
-        })
-      );
-  };
-  handleFormSubmit = (event) => {
-    event.preventDefault();
-    this.getBeers();
-  };
+  const handleFormSubmit = (e) => {
 
-  handleBeerSave = (id) => {
-    const beer = this.state.beers.find((beer) => beer.id === id);
+    
+       console.log()
+      API.getBeers(q)
 
-    API.saveBeer({
-      beerName: beer.name,
-      beerData: beer.beerData,
-    }).then(() => this.getBeers());
-  };
-  render() {
-    return (
- <Container>
-  <Row>
-    <Col lg>
-    <Navbar bg="dark" expand="lg">
-  <Navbar.Brand href="#home"> <h2><FaBeer size={30} />BeerGeenie</h2></Navbar.Brand>
-  <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="mr-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#link">Link</Nav.Link>
-      <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-      </NavDropdown>
-    </Nav>
-    <Form inline handleInputChange ={this.handleInputChange} handleFormSubmit ={this.handleFormSubmit}
-    q={this.state.q}>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button onClick = {console.log("hello")} variant="outline-success">Search</Button>
-    </Form>
-  </Navbar.Collapse>
-</Navbar>
+      var retrievedObject = localStorage.getItem('beersearch');
 
- 
-  </Col>
-  </Row>
-</Container>
-        
-    );
+      const obj = JSON.parse(retrievedObject);
+      
+
+      console.log(obj.data.response.beers.items[0].beer.beer_name );
+  var beerObject = {
+    beername:obj.data.response.beers.items[0].beer.beer_name,
+    beer_label: obj.data.response.beers.items[0].beer.beer_label,
+    beer_description: obj.data.response.beers.items[0].beer.beer_description
+  
+
   }
-}
+   setbeer_name(beerObject.beername)
+   setLabel(beerObject.beer_label)
+   setDescription(beerObject.beer_description)
+  };
 
-export default Home; 
+  return (
+    <Container>
+      <Row>
+        <Col lg>
+          <Navbar bg="dark" expand="lg">
+            <Navbar.Brand href="#home">
+              {" "}
+              <h2>
+                <FaBeer size={30} />
+                BeerGeenie
+              </h2>
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+                <Nav.Link href="#home">Home</Nav.Link>
+                <Nav.Link href="#link">Link</Nav.Link>
+                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.2">
+                    Another action
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">
+                    Something
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#action/3.4">
+                    Separated link
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </Nav>
+              <div>
+          <label for="destinationInput">Destination</label>
+          <input
+            type="text"
+            class="form-control"
+            id="destinationInput"
+            name="destination"
+            value={q}
+            placeholder="Destination"
+            onChange = { e => setQ(e.target.value)}
+            required
+          />
+        </div>
+                <button
+          type="submit"
+          className="btn btn-primary"
+          onClick={handleFormSubmit}
+        >
+          Submit
+        </button>
+              
+            </Navbar.Collapse>
+          </Navbar>
+          <MDBContainer fluid>
+          <div>{beer_name}</div>
+          <div><img src = {beer_label}></img></div>
+          <div>{beer_description}</div>
+</MDBContainer>
+        </Col>
+      </Row>
+    </Container>
+  );
+  }
+export default Home;

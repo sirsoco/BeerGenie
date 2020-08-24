@@ -2,11 +2,10 @@ import axios from "axios";
 //import db from "../models"
 export default {
 
-    searchBeer: (q) =>
-         axios.get(`https://api.brewerydb.com/v2/beers?key=7873bf684e7db7e59e55ea9dbc1e8d4e&name=${q}`).then((resutl) => {
-             return results 
-         }),
-
-    saveBeer: (beer) =>
-         axios.post("/api/favorites", beer)
+    getBeers: (q) => {
+         axios.get(`https://api.untappd.com/v4/search/beer?q=${q}&client_id=C07D8B1B31F42D67ABDAB78E49204B7E69788672&client_secret=2CBAEF54C119820777DADB2E0E6ACE4115E95295&sort=name&offset=1&limit=1`).then( (results) => { console.log("return", results )
+         localStorage.setItem("beersearch", JSON.stringify(results))
+          return results})
     }
+}
+    

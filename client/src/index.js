@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+import 'mdbreact/dist/css/mdb-free.css'
+import "./assets/scss/mdb-free.scss"
 ReactDOM.render(
   <React.StrictMode>
     <App />
