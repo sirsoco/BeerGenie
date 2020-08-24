@@ -35,8 +35,8 @@ const router = require('express').Router()
   // Route for logging user out
  router.get("/logout", function (req, res) {
     req.logout();
-    res.redirect("/");
-  }),
+    res.redirect("/login");
+  });
 
   // Route for getting some data about our user to be used client side
  router.get("/api/user_data", function (req, res) {
