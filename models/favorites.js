@@ -2,7 +2,11 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Favorite = sequelize.define("Favorite", {
-    beer_id: DataTypes.STRING,
+    beerName: {type: DataTypes.STRING,
+    allowNull: false},
+    beerData: {
+      type: DataTypes.JSON,
+      allowNull: false},
     rank: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -10,7 +14,9 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
           min: 0,
           max:5
-      }
+      },
+      UserId: {type: DataTypes.STRING,
+    allowNull: false},
   }
   });
   Favorite.associate = function (models) {

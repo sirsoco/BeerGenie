@@ -1,27 +1,34 @@
-// Requiring necessary npm packages
-var express = require("express");
+const express = require("express");
+const logger = require('morgan');
+const routes = require('./routes')
+var db = require("./models");
 var session = require("express-session");
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 
 // Setting up port and requiring models for syncing
-var PORT = process.env.PORT || 8080;
-var db = require("./models");
+var PORT = process.env.PORT || 3001;
+
 
 // Creating express app and configuring middleware needed for authentication
 var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
+app.use(logger('dev'));
 // We need to use sessions to keep track of our user's login status
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Requiring our routes
-require("./routes/html-routes.js")(app);
-require("./routes/api-routes.js")(app);
-// require('./routes/post-api-routes.js')(app);
+// Serve up static assets
+if(process.env.Node_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
+// add routes to both API and view
+app.use(routes);
+
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync({force: true}).then(function() {

@@ -1,7 +1,38 @@
-$(document).ready(function() {
-  // This file just does a GET request to figure out which user is logged in
-  // and updates the HTML on the page
-  $.get("/api/user_data").then(function(data) {
-    $(".member-name").text(data.email);
-  });
+ $(document).ready(function () {
+  // refrences to form and searchh params
+  var searchForm = $("form.search");
+  var qInput = $("input#q")
+
+  // event listener for search
+  console.log("index.js");
+
+ 
+
+  //event listener for search form 
+$(document).on('submit','#beer-search', handleBeerFormSubmit);
+  
+  function handleBeerFormSubmit(event) {
+    event.preventDefault();
+    console.log('handleBeerFormSubmit');
+    //preventing an empty search
+    if(!qInput.val().trim().trim()){
+      return;
+    }
+    //selecting value of search form & passing to upsertBeer func
+    upsertBeer({
+      beername: 
+      qInput
+      .val()
+      .trim()
+    });
+ }
+  // A function for searching an author. 
+  function upsertBeer(beerData) {
+   console.log(beername)
+    $.post('/api/search/', beerData)
+      .then(getBeers) }
+ function postFavorite() {
+   console.log("hello");
+ }
+
 });
