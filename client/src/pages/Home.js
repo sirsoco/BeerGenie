@@ -11,6 +11,7 @@ import Col from "react-bootstrap/Col";
 import { FaBeer } from "react-icons/fa";
 import "./styles.css";
 
+
 function Home() {
   
 
@@ -33,7 +34,7 @@ function Home() {
       const obj = JSON.parse(retrievedObject);
       
 
-      console.log(obj.data.response.beers.items[0].beer.beer_name );
+ 
   var beerObject = {
     beername:obj.data.response.beers.items[0].beer.beer_name,
     beer_label: obj.data.response.beers.items[0].beer.beer_label,
@@ -100,11 +101,11 @@ function Home() {
               
             </Navbar.Collapse>
           </Navbar>
-          <MDBContainer fluid>
+        <div>
           <div>{beer_name}</div>
           <div><img src = {beer_label}></img></div>
           <div>{beer_description}</div>
-</MDBContainer>
+      </div>
         </Col>
       </Row>
     </Container>
