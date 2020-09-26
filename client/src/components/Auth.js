@@ -1,16 +1,28 @@
-// Import FirebaseAuth and firebae
-
-import React form 'react';
+//importd
+import React, {useState, useEffect} from 'react'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import firebase from '../config'
+import firebase from 'firebase'
 
-export default function Auth() {// The component's Local state.
-state = {
-  isSignedIn: false // Local signed-in state.
+const firebaseConfig = {
+  apiKey: "AIzaSyCxsddApO88FBnQF_mDeLCp3GXsLmKPS0A",
+  authDomain: "beergenie-fa31e.firebaseapp.com",
+  databaseURL: "https://beergenie-fa31e.firebaseio.com",
+  projectId: "beergenie-fa31e",
+  storageBucket: "beergenie-fa31e.appspot.com",
+  messagingSenderId: "914180703894",
+  appId: "1:914180703894:web:882931aab0246a349364b7",
+  measurementId: "G-EB3BW86XRQ"
 };
 
+firebase.initializeApp(firebaseConfig);
+
+export default function Auth() {// The component's Local state.
+const [isSignedIn, setState] = useState({
+  isSignedIn: false // Local signed-in state.
+});
+
 // Configure FirebaseUI.
-uiConfig = {
+const uiConfig = {
   // Popup signin flow rather than redirect flow.
   signInFlow: 'popup',
   // We will display Google and Facebook as auth providers.
@@ -24,34 +36,22 @@ uiConfig = {
   }
 };
 
-// Listen to the Firebase Auth state and set the local state.
-componentDidMount() {
-  this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
-      (user) => this.setState({isSignedIn: !!user})
-  );
-}
+useEffect(() => {
+  // Listen to the Firebase Auth state and set the local state.
+  const unregisterAuthObserver = firebase.auth().onAuthStateChanged(
+    (user) => setState({isSignedIn: !!user}))
 
-// Make sure we un-register Firebase observers when the component unmounts.
-componentWillUnmount() {
-  this.unregisterAuthObserver();
-}
-
-render() {
-  if (!this.state.isSignedIn) {
-    return (
-      <div>
-        <h1>My App</h1>
-        <p>Please sign-in:</p>
-        <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
-      </div>
-    );
+   // Make sure we un-register Firebase observers when the component unmounts 
+  return () => { unregisterAuthObserver()
   }
-  return (
-    <div>
-      <h1>My App</h1>
-      <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
-      <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
-    </div>
-  );
+}, [])
+
+return (
+  <div>
+    <h1>My App</h1>
+    <p>Please sign-in:</p>
+    <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
+  </div>
+);
 }
-}
+

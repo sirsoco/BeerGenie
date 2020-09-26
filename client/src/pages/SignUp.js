@@ -1,9 +1,10 @@
 import React from 'react'
+import Auth from '../components/Auth'
 
 export default function SignUp() {
   return(
-    <>
-    <h1>Hello</h1>
-    </>
+    <div>
+    <Auth></Auth> 
+    </div>
   )
 }
