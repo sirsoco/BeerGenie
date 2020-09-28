@@ -9,7 +9,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { FaBeer } from "react-icons/fa";
-import "./styles.css";
+import '../App'
 
 
 function Home() {

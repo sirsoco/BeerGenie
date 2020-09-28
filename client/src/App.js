@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import firebase from 'firebase'
 import Home from "./pages/Home"
 import SignUp from "./pages/SignUp"
+import '../src/App.css'
 
 
 
