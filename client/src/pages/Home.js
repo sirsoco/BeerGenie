@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropDown";
@@ -9,44 +9,31 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { FaBeer } from "react-icons/fa";
-import '../App'
-
+import "../App";
 
 function Home() {
-  
-
   const [q, setQ] = useState();
-  const [beer_name, setbeer_name] = useState()
-  const [beer_label, setLabel] =
-  useState()
-  const [beer_description, setDescription] = useState() 
+  const [beer_name, setbeer_name] = useState();
+  const [beer_label, setLabel] = useState();
+  const [beer_description, setDescription] = useState();
 
   //handleInputChange = (event) => {
 
   const handleFormSubmit = (e) => {
+    console.log();
+    API.getBeers(q).then((result) => {
+      console.log("Search:", result);
+      // var beerObject = {
+      //   beername:obj.data.response.beers.items[0].beer.beer_name,
+      //   beer_label: obj.data.response.beers.items[0].beer.beer_label,
+      //   beer_description: obj.data.response.beers.items[0].beer.beer_description
 
-    
-       console.log()
-      API.getBeers(q)
-
-      var retrievedObject = localStorage.getItem('beersearch');
-
-      const obj = JSON.parse(retrievedObject);
-      
-
- 
-  var beerObject = {
-    beername:obj.data.response.beers.items[0].beer.beer_name,
-    beer_label: obj.data.response.beers.items[0].beer.beer_label,
-    beer_description: obj.data.response.beers.items[0].beer.beer_description
-  
-
-  }
-   setbeer_name(beerObject.beername)
-   setLabel(beerObject.beer_label)
-   setDescription(beerObject.beer_description)
+      // }
+      //  setbeer_name(beerObject.beername)
+      //  setLabel(beerObject.beer_label)
+      //  setDescription(beerObject.beer_description)
+    });
   };
-
   return (
     <Container>
       <Row>
@@ -79,36 +66,37 @@ function Home() {
                 </NavDropdown>
               </Nav>
               <div>
-          <label for="destinationInput">Destination</label>
-          <input
-            type="text"
-            class="form-control"
-            id="destinationInput"
-            name="destination"
-            value={q}
-            placeholder="Destination"
-            onChange = { e => setQ(e.target.value)}
-            required
-          />
-        </div>
-                <button
-          type="submit"
-          className="btn btn-primary"
-          onClick={handleFormSubmit}
-        >
-          Submit
-        </button>
-              
+                <label for="destinationInput">Destination</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="destinationInput"
+                  name="destination"
+                  value={q}
+                  placeholder="Destination"
+                  onChange={(e) => setQ(e.target.value)}
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={handleFormSubmit}
+              >
+                Submit
+              </button>
             </Navbar.Collapse>
           </Navbar>
-        <div>
-          <div>{beer_name}</div>
-          <div><img src = {beer_label}></img></div>
-          <div>{beer_description}</div>
-      </div>
+          <div>
+            <div>{beer_name}</div>
+            <div>
+              <img src={beer_label}></img>
+            </div>
+            <div>{beer_description}</div>
+          </div>
         </Col>
       </Row>
     </Container>
   );
-  }
+}
 export default Home;
